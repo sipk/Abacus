@@ -1,14 +1,16 @@
 <template>
   <div class="soroban">
     <Rod class="soroban__rod"
-        v-for="(digit, idx) in digits"
-        :key="idx"
+        v-for="(digit, index) in digits"
+        :key="index"
+        :value="0"
+        :hasPoint="hasPoint(index)"
       />
   </div>
 </template>
 
 <script>
-import Rod from "./Rod.vue"
+import Rod from './Rod.vue'
 
 export default {
   components: {
@@ -16,21 +18,26 @@ export default {
   },
   data () {
     return {
-      rodsNumber: 13,
+      rodsNumber: 23,
       digits: [],
     };
   },
   beforeMount () {
     this.digits = Array(this.rodsNumber)
       .fill(0);
-  }
+  },
+  methods: {
+    hasPoint (index) {
+      return index % 3 === 2;
+    }
+  },
 }
 </script>
 
 <style scoped>
   .soroban {
-    background-color: turquoise;
-    width: 400px;
+    /* background-color: turquoise; */
+    /* width: 400px; */
     padding: 12px 8px;
     border-radius: 10px;
 

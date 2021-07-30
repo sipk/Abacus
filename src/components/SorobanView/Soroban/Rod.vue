@@ -1,84 +1,119 @@
 <template>
   <div class="rod">
-    <Bead class="rod__5bead"
-        :value="isFiveBeadOn"
-        :id="5"
-        @input="repelFive" 
-      />
-    <div class="rod__space"></div>
-    <Bead class="rod__1bead"
-        v-for="(isOn, idx) in isOneBeadOn"
-        :key="idx"
-        :value="isOn"
-        :id="idx"
-        @input="repelOne" 
-      />
+    <div class="rod__upper">
+      <div class="rod__5bead"
+          :style="fiveBeadStyle"
+          @click="repel5Bead"
+        >
+      </div>
+    </div>
+    <div class="rod__bar">
+      <div class="rod__point"
+          v-if="hasPoint"
+        >
+      </div>
+    </div>
+    <div class="rod__lower">
+      <div class="rod__1bead"
+          v-for="(isOn, index) in is1BeadOn"
+          :key="index"
+          :style="oneBeadStyles[index]"
+          @click="repel1Bead(index)"
+        >
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Bead from "./Bead.vue";
-
 export default {
-  components: {
-    Bead,
+  props: {
+    hasPoint: Boolean
   },
   data () {
     return {
-      oneBeadNumber: 4,
-      isFiveBeadOn: false,
-      isOneBeadOn: [],
-    };
+      value: 0,
+    }
   },
-  beforeMount () {
-    this.isFiveBeadOn = false;
-    this.isOneBeadOn = Array(this.oneBeadNumber)
-      .fill(true);
+  computed: {
+    is5BeadOn () {
+      return this.value >= 5;
+    },
+    is1BeadOn () {
+      const isOn = [];
+      const lowerNo = this.value % 5;
+      for (let i = 0; i < 4; i++) {
+        isOn.push(i < lowerNo);
+      }
+      return isOn;
+    },
+    fiveBeadStyle () {
+      return {
+        transform: this.is5BeadOn 
+          ? 'translateY(14px)'
+          : 'translateY(0)'
+      }
+    },
+    oneBeadStyles () {
+      return this.is1BeadOn
+        .map(isOn => {
+          return {
+            transform: isOn
+              ? 'translateY(0)'
+              : 'translateY(14px)'
+          }
+        })
+    }
   },
   methods: {
-    repelFive ({ value }) {
-      this.isFiveBeadOn = value;
+    repel5Bead () {
+      this.value = this.is5BeadOn
+        ? this.value - 5
+        : this.value + 5;
     },
-    repelOne ({ value, id }) {
-      this.isOneBeadOn.length = 0;
-      for (let i = 0; i < this.oneBeadNumber; i++) {
-        const isOn = (i === id)
-          ? value 
-          : i > id;
-        this.isOneBeadOn.push(isOn);
-      }
-    }
+    repel1Bead (index) {
+      const upperValue = this.is5BeadOn ? 5 : 0;
+      this.value = this.is1BeadOn[index]
+        ? upperValue + index
+        : upperValue + index + 1;
+    },
   }
-};
+}
 </script>
 
 <style scoped>
-  .rod {
-    /* background-color: steelblue; */
-    height: 101px;  width: 22px;
-    /* display: block; */
-    position: relative;
+.rod {}
+  .rod__upper {
+    /* background-color: cadetblue; */
+    height: 28px;
   }
-    .rod__5bead {}
-    .rod__1bead {
-      position: absolute;
-    }
-    .rod__1bead:nth-of-type(3) {
-      TOP: 31px;
-    }
-    .rod__1bead:nth-of-type(4) {
-      TOP: 45px;
-    }
-    .rod__1bead:nth-of-type(5) {
-      TOP: 59px;
-    }
-    .rod__1bead:nth-of-type(6) {
-      TOP: 73px;
-    }
-    .rod__space {
-      /* display: block; */
-      background-color: #666666;
-      height: 3px;  width: 100%;
-    }
-</style>
+  .rod__bar {
+    /* background-color: #222; */
+    height: 12px;
+    /* border-radius: 40%; */
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+    .rod__point {
+      background-color: #222;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+    }
+  .rod__lower {
+    /* background-color: cadetblue; */
+    height: 70px;
+  }
+
+  .rod__5bead,
+  .rod__1bead {
+    background-color: #222;
+    height: 14px; width: 22px;
+    border-radius: 50%;
+
+    transition: transform .4s ease;
+
+    cursor: pointer;
+  }
+</style>
