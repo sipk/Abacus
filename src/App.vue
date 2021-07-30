@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <Main />
-  </div>
+  <Main />
 </template>
 
 <script setup>
@@ -21,7 +19,7 @@ import Main from './components/Main.vue'
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 62px;
+  /* margin-top: 62px; */
   background-color: #eef0f6;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="drawing">
-    <div class="drawing__title">DRAWING</div>
     <canvas class="drawing__canvas"
         id="canvas"
         ref="canvas"
@@ -65,22 +64,7 @@
 </script>
 
 <style scoped>
-  .drawing {
-    background-color: white;
-    height: 300px;
-    padding: 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-  }
-    .drawing__title {
-      font-size: 13px;
-      position: absolute;
-      top: 28px;  left: 18px;
-    }
+  .drawing {}
     .drawing__canvas {}
     #canvas {
       border: 2px solid steelblue;
