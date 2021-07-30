@@ -1,5 +1,6 @@
 <template>
   <div class="soroban-view">
+    <div class="soroban-view__title">SOROBAN</div>
     <div class="soroban-view__container">
       <Pin class="soroban-view__pin" />
       <Soroban class="soroban-view__soroban" />
@@ -25,15 +26,21 @@ export default {
 <style scoped>
   .soroban-view {
     /* background-color: tan; */
-    height: 50vh;
+    height: 300px;
+    padding: 20px;
     /* text-align: center; */
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    /* position: relative; */
+    position: relative;
   }
+    .soroban-view__title {
+      font-size: 13px;
+      position: absolute;
+      top: 28px;  left: 18px;
+    }
     .soroban-view__container {}
       .soroban-view__pin {}
 

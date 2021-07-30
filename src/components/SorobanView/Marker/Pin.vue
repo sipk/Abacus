@@ -45,7 +45,8 @@ export default {
 
 <style scoped>
   .gold-mid{
-    color: red;
+    /* color: #ff6150; */
+    color: #134e6f;
     opacity: 1;
   }
 
@@ -67,7 +68,8 @@ export default {
       justify-content: center;
     }
     .pin__circle {
-      background-color: red;
+      /* background-color: #ff6150; */
+      background-color: #134e6f;
       width: 10px; height: 10px;
       border-radius: 5px;
     }

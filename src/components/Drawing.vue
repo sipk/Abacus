@@ -1,12 +1,15 @@
 <template>
-  <h1>drawing</h1>
-  <canvas id="canvas"
-    ref="canvas"
-    @mousedown="onMouseDown"
-    @mousemove="onMouseMove"
-    @mouseup="onMouseUp"
-  >
-  </canvas>
+  <div class="drawing">
+    <div class="drawing__title">DRAWING</div>
+    <canvas class="drawing__canvas"
+        id="canvas"
+        ref="canvas"
+        @mousedown="onMouseDown"
+        @mousemove="onMouseMove"
+        @mouseup="onMouseUp"
+      >
+    </canvas>
+  </div>
 </template>
 
 <script>
@@ -15,7 +18,7 @@
       return {
         size: 2,
         isPressed: false,
-        color: 'black',
+        color: '#134e6f',
         offset: [],
       };
     },
@@ -62,7 +65,24 @@
 </script>
 
 <style scoped>
-  #canvas {
-    border: 2px solid steelblue;
+  .drawing {
+    background-color: white;
+    height: 300px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
   }
+    .drawing__title {
+      font-size: 13px;
+      position: absolute;
+      top: 28px;  left: 18px;
+    }
+    .drawing__canvas {}
+    #canvas {
+      border: 2px solid steelblue;
+    }
 </style>

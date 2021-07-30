@@ -1,13 +1,11 @@
 <template>
   <div>
     <Main />
-    <Drawing />
   </div>
 </template>
 
 <script setup>
 import Main from './components/Main.vue'
-import Drawing from './components/Drawing.vue'
 
 // This starter template is using Vue 3 experimental <script setup> SFCs
 // Check out https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
@@ -23,6 +21,7 @@ import Drawing from './components/Drawing.vue'
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 62px;
+  background-color: #eef0f6;
 }
 </style>

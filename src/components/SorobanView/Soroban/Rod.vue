@@ -97,7 +97,7 @@ export default {
     justify-content: center;
   }
     .rod__point {
-      background-color: #222;
+      background-color: #ff6150;
       width: 5px; height: 5px;
       border-radius: 50%;
     }
@@ -108,7 +108,7 @@ export default {
 
   .rod__5bead,
   .rod__1bead {
-    background-color: #222;
+    background-color: #ffa822;
     height: 14px; width: 22px;
     border-radius: 50%;
 
