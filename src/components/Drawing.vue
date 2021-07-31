@@ -8,6 +8,14 @@
         @mouseup="onMouseUp"
       >
     </canvas>
+    <button class="drawing__clear"
+        @click="clear"
+      >
+      <i class="las la-backspace"
+          :class="iconStyle"
+        >
+      </i>
+    </button>
   </div>
 </template>
 
@@ -20,6 +28,11 @@
         color: '#134e6f',
         offset: [],
       };
+    },
+    computed: {
+      iconStyle () {
+        return 'on-color';
+      }
     },
     mounted () {
       const canvas = this.$refs.canvas;
@@ -58,15 +71,42 @@
         this.ctx.strokeStyle = this.color;
         this.ctx.lineWidth = this.size * 2;
         this.ctx.stroke();
+      },
+      clear () {
+        this.ctx.clearRect(
+          0, 0, 
+          this.ctx.canvas.clientWidth, this.ctx.canvas.clientHeight
+        );
       }
     }
   }
 </script>
 
 <style scoped>
-  .drawing {}
+  .on-color {
+    color: #ff6150;
+    opacity: 1;
+  }
+
+  .drawing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
     .drawing__canvas {}
     #canvas {
       border: 2px solid steelblue;
+    }
+    .drawing__clear {
+      background-color: #ff615033;
+      font-size: 32px;
+      width: 66px; height: 66px;
+      margin-left: 24px;
+      border-radius: 50%;
+      border: none;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 </style>
