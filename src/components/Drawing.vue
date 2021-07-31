@@ -99,6 +99,7 @@
   }
     .drawing__canvas {
       width: 70%;
+      max-height: 240px;
       border: 1px solid #ccc;
     }
     .drawing__clear {
