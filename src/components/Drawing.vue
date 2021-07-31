@@ -36,6 +36,10 @@
     },
     mounted () {
       const canvas = this.$refs.canvas;
+      const canvasWidth = document.getElementById('canvas').clientWidth;
+      const canvasHeight = document.getElementById('canvas').clientHeight;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
       this.ctx = canvas.getContext('2d');
     },
     methods: {
@@ -93,9 +97,9 @@
     align-items: center;
     justify-content: center;
   }
-    .drawing__canvas {}
-    #canvas {
-      border: 2px solid steelblue;
+    .drawing__canvas {
+      width: 70%;
+      border: 1px solid #ccc;
     }
     .drawing__clear {
       background-color: #ff615033;
