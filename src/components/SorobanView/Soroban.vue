@@ -58,7 +58,6 @@ export default {
 <style scoped>
   .soroban {
     display: flex;
-    justify-content: space-between;
   }
 
   .soroban__rod {
