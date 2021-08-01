@@ -14,7 +14,6 @@
 <script>
 export default {
   props: {
-    id: Number,
     isOn: Boolean
   },
   computed: {
@@ -27,7 +26,7 @@ export default {
   },
   methods: {
     toggle () {
-      this.$emit('input', this.id);
+      this.$emit('input');
     }
   }
 }
