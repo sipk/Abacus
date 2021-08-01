@@ -28,12 +28,8 @@
 <script>
 export default {
   props: {
-    hasPoint: Boolean
-  },
-  data () {
-    return {
-      value: 0,
-    }
+    hasPoint: Boolean,
+    value: Number
   },
   computed: {
     is5BeadOn () {
@@ -67,15 +63,17 @@ export default {
   },
   methods: {
     repel5Bead () {
-      this.value = this.is5BeadOn
+      const value = this.is5BeadOn
         ? this.value - 5
         : this.value + 5;
+      this.$emit('valueChanged', value);
     },
     repel1Bead (index) {
       const upperValue = this.is5BeadOn ? 5 : 0;
-      this.value = this.is1BeadOn[index]
+      const value = this.is1BeadOn[index]
         ? upperValue + index
         : upperValue + index + 1;
+      this.$emit('valueChanged', value);
     },
   }
 }

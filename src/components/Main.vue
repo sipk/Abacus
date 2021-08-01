@@ -62,5 +62,8 @@ export default {
 
         position: absolute;
       }
-      .main__content {}
+      .main__content {
+        /* background-color: teal; */
+        width: 80%;
+      }
 </style>

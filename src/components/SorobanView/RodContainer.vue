@@ -28,10 +28,10 @@ export default {
     Finger,
   },
   props: {
-    pinID: Number,
+    id: Number,
     isPinOn: Boolean,
+    value: Number,
     hasPoint: Boolean,
-    fingerID: Number,
     isFingerOn: Boolean
   },
   methods: {

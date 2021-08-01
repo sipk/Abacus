@@ -15,6 +15,10 @@ export default {
 </script>
 
 <style scoped>
-  .view {}
+  .view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
     .view__soroban {}
 </style>

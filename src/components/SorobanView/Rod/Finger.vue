@@ -33,9 +33,6 @@ export default {
 </script>
 
 <style scoped>
-  @import url("https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css");
-  @import url("https://use.fontawesome.com/releases/v5.6.1/css/all.css");
-
   .on-color {
     color: #134e6f;
     opacity: 1;
