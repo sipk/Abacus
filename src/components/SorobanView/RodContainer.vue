@@ -1,16 +1,18 @@
 <template>
   <div class="container">
     <Pin class="container__pin"
-        :id="pinID"
+        :id="id"
         :isOn="isPinOn"
         @input="tapPin" 
       />
     <Rod class="container__rod"
-        :value="0"
-        :hasPoint="hasPoint" 
+        :id="id"
+        :value="value"
+        :hasPoint="hasPoint"
+        @valueChanged="valueChanged"
       />
     <Finger class="container__finger"
-        :id="fingerID"
+        :id="id"
         :isOn="isFingerOn"
         @input="tapFinger" 
       />
@@ -29,15 +31,18 @@ export default {
     Finger,
   },
   props: {
-    pinID: Number,
+    id: Number,
     isPinOn: Boolean,
+    value: Number,
     hasPoint: Boolean,
-    fingerID: Number,
     isFingerOn: Boolean
   },
   methods: {
     tapPin (id) {
       this.$emit('tapPin', id);
+    },
+    valueChanged (value) {
+      this.$emit('valueChanged', { id: this.id, value: value });
     },
     tapFinger (id) {
       this.$emit('tapFinger', id);
