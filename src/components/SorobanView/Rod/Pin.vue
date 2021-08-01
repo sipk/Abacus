@@ -3,7 +3,7 @@
       @click="toggle"
     >
     <div class="pin__dot"
-        :class="dotStyle"
+        :style="dotStyle"
       >
     </div>
   </div>
@@ -12,14 +12,15 @@
 <script>
 export default {
   props: {
-    isOn: Boolean
+    isOn: Boolean,
+    color: String,
   },
   computed: {
     dotStyle () {
       return {
-        'on-color': this.isOn,
-        'off-color': !this.isOn
-      };
+        backgroundColor: this.color,
+        opacity: this.isOn ? 1 : 0
+      }
     },
   },
   methods: {
@@ -31,16 +32,6 @@ export default {
 </script>
 
 <style scoped>
-  .on-color {
-    /* color: #ff6150; */
-    color: #134e6f;
-    opacity: 1;
-  }
-
-  .off-color {
-    opacity: 0;
-  }
-
   .pin {
     width: 22px;  height: 22px;
 
@@ -49,8 +40,7 @@ export default {
     justify-content: center;
   }
     .pin__dot {
-      /* background-color: #ff6150; */
-      background-color: #134e6f;
+      /* background-color: #134e6f; */
       width: 10px; height: 10px;
       border-radius: 5px;
     }

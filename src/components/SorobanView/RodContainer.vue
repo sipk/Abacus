@@ -2,6 +2,7 @@
   <div class="container">
     <Pin class="container__pin"
         :isOn="isPinOn"
+        :color="pinColor"
         @input="tapPin" 
       />
     <Rod class="container__rod"
@@ -30,6 +31,7 @@ export default {
   props: {
     id: Number,
     isPinOn: Boolean,
+    pinColor: String,
     value: Number,
     hasPoint: Boolean,
     isFingerOn: Boolean

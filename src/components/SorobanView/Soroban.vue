@@ -4,7 +4,8 @@
         v-for="(value, index) in values"
         :key="index"
         :id="index"
-        :isPinOn="isPinOn[index]"
+        :isPinOn="isPinOn(index)"
+        :pinColor="pinColor(index)"
         :value="values[index]"
         :hasPoint="hasPoint(index)"
         :isFingerOn="isFingerOn[index]"
@@ -33,7 +34,11 @@ export default {
   data () {
     return {
       digitsNumber: 23,
-      isPinOn: [],
+      pins: [
+        { index: 0, color: '#134e6f' },
+        { index: 1, color: '#ff6150' },
+        { index: 2, color: '#1ac0c6' },
+      ],
       values: [],
       isFingerOn: []
     };
@@ -41,12 +46,9 @@ export default {
   computed: {
     iconStyle () {
       return 'on-color';
-    }
+    },
   },
   beforeMount () {
-    this.isPinOn = Array(this.digitsNumber)
-      .fill(false);
-    this.isPinOn[0] = true;
     this.values = Array(this.digitsNumber)
       .fill(0);
     this.isFingerOn = Array(this.digitsNumber)
@@ -54,14 +56,22 @@ export default {
     this.isFingerOn[0] = true;
   },
   methods: {
+    isPinOn (index) {
+      return this.pins.some((pin) => {
+        return pin.index === index;
+      });
+    },
+    pinColor (index) {
+      const pin = this.pins.find((pin) => {
+        return pin.index === index;
+      });
+      return pin ? pin.color : '';
+    },
     hasPoint (index) {
       return index % 3 === 2;
     },
     tapPin (id) {
-      this.isPinOn.length = 0;
-      this.isPinOn = Array(this.digitsNumber)
-        .fill(false);
-      this.isPinOn[id] = true;
+      this.pins[0].index = id;
     },
     tapFinger (id) {
       this.isFingerOn.length = 0;
