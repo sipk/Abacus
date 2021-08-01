@@ -35,14 +35,20 @@
       }
     },
     mounted () {
+      window.addEventListener('resize', this.onResize);
+      this.onResize();
+
       const canvas = this.$refs.canvas;
-      const canvasWidth = document.getElementById('canvas').clientWidth;
-      const canvasHeight = document.getElementById('canvas').clientHeight;
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
       this.ctx = canvas.getContext('2d');
     },
     methods: {
+      onResize () {
+        const canvas = this.$refs.canvas;
+        const canvasWidth = document.getElementById('canvas').clientWidth;
+        const canvasHeight = document.getElementById('canvas').clientHeight;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+      },
       onMouseDown (e) {
         this.isPressed = true;
         this.offset = [e.offsetX, e.offsetY];
@@ -82,6 +88,9 @@
           this.ctx.canvas.clientWidth, this.ctx.canvas.clientHeight
         );
       }
+    },
+    beforeUnmount () {
+      window.removeEventListener('resize', this.onResize);
     }
   }
 </script>
