@@ -13,23 +13,28 @@
         @valueChanged="valueChanged"
         @tapFinger="tapFinger"
       />
-    <button class="soroban__clear"
-        @click="clear"
-      >
-      <i class="las la-undo-alt"
-          :class="iconStyle"
+    <div class="soroban__tool">
+      <PinSelector class="soroban__pin-selector" />
+      <button class="soroban__clear"
+          @click="clear"
         >
-      </i>
-    </button>
+        <i class="las la-undo-alt"
+            :class="iconStyle"
+          >
+        </i>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 import RodContainer from './RodContainer.vue'
+import PinSelector from './PinSelector.vue'
 
 export default {
   components: {
     RodContainer,
+    PinSelector
   },
   data () {
     return {
@@ -101,22 +106,44 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    /* background: blanchedalmond; */
   }
     .soroban__rod {
       margin: 0 3px;
     }
-    .soroban__clear {
-      color: #ff6150;
-      background-color: #ff615033;
-      font-size: 28px;
-      width: 66px; height: 66px;
-      margin-left: 24px;
-      border-radius: 50%;
-      border: none;
-
+    .soroban__tool {
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
+      margin-left: 24px;
+      position: relative;
+
+      /* background: black; */
+      width: 80px;  height: 168px;
     }
+      .soroban__pin-selector {
+        position: absolute;
+        top: 0;
+
+        /* background: black; */
+        width: 100%;
+      }
+      .soroban__clear {
+        margin-left: 9px;
+
+        background-color: #ff615033;
+        width: 66px; height: 66px;
+        border-radius: 50%;
+        border: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #ff6150;
+        font-size: 28px;
+      }
 </style>
 
