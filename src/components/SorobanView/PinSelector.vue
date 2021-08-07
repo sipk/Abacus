@@ -9,7 +9,7 @@
           name="group"
           :id="option"
           :value="option"
-          v-model="picked"
+          v-model="innerSelected"
         />
       <label 
           class="pin-selector__color"
@@ -23,14 +23,18 @@
 
 <script>
 export default ({
-  data () {
-    return {
-      picked: '#134e6f',
-      options: [
-        '#134e6f',
-        '#ff6150',
-        '#1ac0c6'
-      ]
+  props: {
+    options: Array,
+    selected: String
+  },
+  computed: {
+    innerSelected: {
+      get () {
+        return this.$props.selected;
+      },
+      set (value) {
+        this.$emit('valueChanged', value);
+      }
     }
   },
   methods: {

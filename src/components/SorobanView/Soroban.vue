@@ -14,7 +14,11 @@
         @tapFinger="tapFinger"
       />
     <div class="soroban__tool">
-      <PinSelector class="soroban__pin-selector" />
+      <PinSelector class="soroban__pin-selector" 
+          :options="pinColors"
+          :selected="selectedPinColor"
+          @valueChanged="selectPinColor"
+        />
       <button class="soroban__clear"
           @click="clear"
         >
@@ -44,6 +48,7 @@ export default {
         { index: 1, color: '#ff6150' },
         { index: 2, color: '#1ac0c6' },
       ],
+      selectedPinColor: '#134e6f',
       values: [],
       isFingerOn: []
     };
@@ -52,6 +57,12 @@ export default {
     iconStyle () {
       return 'on-color';
     },
+    pinColors () {
+      return this.pins
+        .map(pin => {
+          return pin.color;
+        });
+    }
   },
   beforeMount () {
     this.values = Array(this.digitsNumber)
@@ -72,11 +83,18 @@ export default {
       });
       return pin ? pin.color : '';
     },
+    selectPinColor (color) {
+      this.selectedPinColor = color;
+    },
     hasPoint (index) {
       return index % 3 === 2;
     },
     tapPin (id) {
-      this.pins[0].index = id;
+      this.pins
+        .find(pin => {
+          return pin.color === this.selectedPinColor;
+        })
+        .index = id;
     },
     tapFinger (id) {
       this.isFingerOn.length = 0;
