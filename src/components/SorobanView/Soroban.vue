@@ -8,7 +8,7 @@
         :pinColor="pinColor(index)"
         :value="values[index]"
         :hasPoint="hasPoint(index)"
-        :isFingerOn="isFingerOn[index]"
+        :isFingerOn="isFingerOn(index)"
         @tapPin="tapPin"
         @valueChanged="valueChanged"
         @tapFinger="tapFinger"
@@ -50,7 +50,7 @@ export default {
       ],
       selectedPinColor: '#134e6f',
       values: [],
-      isFingerOn: []
+      finger: { index: 0 }
     };
   },
   computed: {
@@ -67,15 +67,19 @@ export default {
   beforeMount () {
     this.values = Array(this.digitsNumber)
       .fill(0);
-    this.isFingerOn = Array(this.digitsNumber)
-      .fill(false)
-    this.isFingerOn[0] = true;
   },
   methods: {
     isPinOn (index) {
       return this.pins.some((pin) => {
         return pin.index === index;
       });
+    },
+    tapPin (id) {
+      this.pins
+        .find(pin => {
+          return pin.color === this.selectedPinColor;
+        })
+        .index = id;
     },
     pinColor (index) {
       const pin = this.pins.find((pin) => {
@@ -89,26 +93,23 @@ export default {
     hasPoint (index) {
       return index % 3 === 2;
     },
-    tapPin (id) {
-      this.pins
-        .find(pin => {
-          return pin.color === this.selectedPinColor;
-        })
-        .index = id;
+    isFingerOn (index) {
+      return this.finger.index === index;
     },
     tapFinger (id) {
-      this.isFingerOn.length = 0;
-      this.isFingerOn = Array(this.digitsNumber)
-        .fill(false);
-      this.isFingerOn[id] = true;
+      this.finger.index = id;
     },
     valueChanged ({ id, value }) {
       this.values[id] = value;
     },
     clear () {
+      this.pins.map((pin, index) => {
+        pin.index = index;
+      });
       this.values.length = 0;
       this.values = Array(this.digitsNumber)
         .fill(0);
+      this.finger.index = 0;
     }
   },
 }
