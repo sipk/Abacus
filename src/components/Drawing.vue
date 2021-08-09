@@ -5,7 +5,6 @@
         ref="canvas"
         @mousedown="onMouseDown"
         @mousemove="onMouseMove"
-        @mouseup="onMouseUp"
       >
     </canvas>
     <button class="drawing__clear"
@@ -37,6 +36,8 @@
     mounted () {
       window.addEventListener('resize', this.onResize);
       this.onResize();
+
+      window.addEventListener('mouseup', this.onMouseUp);
 
       const canvas = this.$refs.canvas;
       this.ctx = canvas.getContext('2d');
