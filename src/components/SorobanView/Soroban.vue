@@ -27,6 +27,11 @@
           >
         </i>
       </button>
+      <Switch 
+          class="soroban__switch"
+          :selected="isUnitColorOn"
+          @valueChanged="selectUnit"
+        />
     </div>
   </div>
 </template>
@@ -34,11 +39,13 @@
 <script>
 import RodContainer from './RodContainer.vue'
 import PinSelector from './PinSelector.vue'
+import Switch from './Switch.vue'
 
 export default {
   components: {
     RodContainer,
-    PinSelector
+    PinSelector,
+    Switch
   },
   data () {
     return {
@@ -50,7 +57,8 @@ export default {
       ],
       selectedPinColor: '#134e6f',
       values: [],
-      finger: { index: 0 }
+      finger: { index: 0 },
+      isUnitColorOn: false
     };
   },
   computed: {
@@ -110,6 +118,9 @@ export default {
       this.values = Array(this.digitsNumber)
         .fill(0);
       this.finger.index = 0;
+    },
+    selectUnit (isSelected) {
+      this.isUnitColorOn = isSelected;
     }
   },
 }
@@ -163,6 +174,12 @@ export default {
 
         color: #ff6150;
         font-size: 28px;
+      }
+      .soroban__switch {
+        position: absolute;
+        left: 0;  bottom: 0;
+
+        width: 88px;
       }
 </style>
 
