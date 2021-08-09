@@ -181,6 +181,8 @@ export default {
 
         color: #ff6150;
         font-size: 28px;
+
+        cursor: pointer;
       }
       .soroban__switch {
         position: absolute;

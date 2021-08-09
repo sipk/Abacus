@@ -68,6 +68,8 @@ export default ({
         /* background-color: #134e6f; */
         width: 26px;  height: 26px;
         border-radius: 50%;
+
+        cursor: pointer;
       }
       .pin-selector__color::after {
         display: none;

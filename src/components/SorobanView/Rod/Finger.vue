@@ -44,6 +44,8 @@ export default {
 
   .finger {
     width: 22px;  height: 22px;
+
+    cursor: pointer;
   }
     .finger__item {
       /* background-color: thistle; */

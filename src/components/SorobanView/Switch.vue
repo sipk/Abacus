@@ -94,6 +94,8 @@ export default ({
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 
       transition: transform .4s ease;
+
+      cursor: pointer;
     }
     input {
       display: none;

@@ -38,6 +38,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    cursor: pointer;
   }
     .pin__dot {
       /* background-color: #134e6f; */

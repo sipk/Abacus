@@ -110,6 +110,8 @@
       width: 70%;
       max-height: 240px;
       border: 1px solid #ccc;
+
+      cursor: pointer;
     }
     .drawing__clear {
       background-color: #ff615033;
@@ -122,5 +124,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      cursor: pointer;
     }
 </style>
