@@ -8,6 +8,7 @@
     <Rod class="container__rod"
         :value="value"
         :hasPoint="hasPoint"
+        :beadColor="beadColor"
         @valueChanged="valueChanged"
       />
     <Finger class="container__finger"
@@ -32,6 +33,7 @@ export default {
     id: Number,
     isPinOn: Boolean,
     pinColor: String,
+    beadColor: String,
     value: Number,
     hasPoint: Boolean,
     isFingerOn: Boolean

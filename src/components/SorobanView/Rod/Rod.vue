@@ -29,7 +29,8 @@
 export default {
   props: {
     hasPoint: Boolean,
-    value: Number
+    value: Number,
+    beadColor: String
   },
   computed: {
     is5BeadOn () {
@@ -45,6 +46,7 @@ export default {
     },
     fiveBeadStyle () {
       return {
+        backgroundColor: this.beadColor,
         transform: this.is5BeadOn 
           ? 'translateY(14px)'
           : 'translateY(0)'
@@ -54,6 +56,7 @@ export default {
       return this.is1BeadOn
         .map(isOn => {
           return {
+            backgroundColor: this.beadColor,
             transform: isOn
               ? 'translateY(0)'
               : 'translateY(14px)'
@@ -106,10 +109,11 @@ export default {
 
   .rod__5bead,
   .rod__1bead {
-    background-color: #ffa822;
+    /* background-color: #ffa822; */
     height: 14px; width: 22px;
     border-radius: 50%;
 
+    transition: background-color .4s ease;
     transition: transform .4s ease;
 
     cursor: pointer;

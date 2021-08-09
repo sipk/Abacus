@@ -6,6 +6,7 @@
         :id="index"
         :isPinOn="isPinOn(index)"
         :pinColor="pinColor(index)"
+        :beadColor="beadColor(index)"
         :value="values[index]"
         :hasPoint="hasPoint(index)"
         :isFingerOn="isFingerOn(index)"
@@ -50,6 +51,7 @@ export default {
   data () {
     return {
       digitsNumber: 23,
+      unitRod: 14,
       pins: [
         { index: 0, color: '#134e6f' },
         { index: 1, color: '#ff6150' },
@@ -100,6 +102,11 @@ export default {
     },
     hasPoint (index) {
       return index % 3 === 2;
+    },
+    beadColor (index) {
+      if (this.isUnitColorOn === false) return '#ffa822';
+
+      return index === this.unitRod ? '#134e6f' : '#ffa822';
     },
     isFingerOn (index) {
       return this.finger.index === index;

@@ -9,7 +9,7 @@
           id="switch"
           v-model="innerSelected"
         />
-      <div class="switch__label">Color</div>
+      <div class="switch__label">Unit</div>
       <div 
           class="switch__background"
           :style="backgroundStyle"
@@ -35,19 +35,24 @@ export default ({
         return this.$props.selected;
       },
       set (isSelected) {
-        console.log('test')
         this.$emit('valueChanged', isSelected);
       }
     },
     backgroundStyle () {
       return { 
-        backgroundColor: this.selected ? "#134e6f66" : "#bec0c6" 
+        backgroundColor: this.selected 
+          ? "#134e6f66" 
+          : "#bec0c6" 
       };
     },
     indicatorStyle () {
       return { 
-        backgroundColor: this.selected ? "#134e6f" : "#fff",
-        transform: this.selected ? 'translateX(0)' : 'translateX(-12px)' 
+        backgroundColor: this.selected 
+          ? "#134e6f" 
+          : "#fff",
+        transform: this.selected 
+          ? 'translateX(0)' 
+          : 'translateX(-12px)' 
       };
     }
   }
