@@ -9,7 +9,7 @@
           id="switch"
           v-model="innerSelected"
         />
-      <div class="switch__label">Unit</div>
+      <div class="switch__label">1, 10</div>
       <div 
           class="switch__background"
           :style="backgroundStyle"
@@ -71,7 +71,10 @@ export default ({
       justify-content: space-between;
       position: relative;
     }
-    .switch__label {}
+    .switch__label {
+      font-size: 18px;
+      color: #555;
+    }
     .switch__background {
       position: absolute;
       right: 0;

@@ -51,7 +51,7 @@ export default {
   data () {
     return {
       digitsNumber: 23,
-      unitRod: 14,
+      unitRod: 11,
       pins: [
         { index: 0, color: '#134e6f' },
         { index: 1, color: '#ff6150' },
@@ -106,7 +106,9 @@ export default {
     beadColor (index) {
       if (this.isUnitColorOn === false) return '#ffa822';
 
-      return index === this.unitRod ? '#134e6f' : '#ffa822';
+      return index === this.unitRod ? '#134e6f' 
+      : index === this.unitRod - 1 ? '#1ac0c6'
+      : '#ffa822';
     },
     isFingerOn (index) {
       return this.finger.index === index;
