@@ -46,6 +46,8 @@ export default {
     },
     fiveBeadStyle () {
       return {
+        "--borderRightColor": this.beadColor,
+        "--borderLeftColor": this.beadColor,
         backgroundColor: this.beadColor,
         transform: this.is5BeadOn 
           ? 'translateY(14px)'
@@ -56,6 +58,8 @@ export default {
       return this.is1BeadOn
         .map(isOn => {
           return {
+            "--borderRightColor": this.beadColor,
+            "--borderLeftColor": this.beadColor,
             backgroundColor: this.beadColor,
             transform: isOn
               ? 'translateY(0)'
@@ -87,6 +91,9 @@ export default {
   .rod__upper {
     /* background-color: cadetblue; */
     height: 28px;
+
+    display: flex;
+    justify-content: center;
   }
   .rod__bar {
     /* background-color: #222; */
@@ -105,11 +112,14 @@ export default {
   .rod__lower {
     /* background-color: cadetblue; */
     height: 70px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .rod__5bead,
+  /* .rod__5bead,
   .rod__1bead {
-    /* background-color: #ffa822; */
     height: 14px; width: 22px;
     border-radius: 50%;
 
@@ -117,5 +127,42 @@ export default {
     transition: transform .4s ease;
 
     cursor: pointer;
+  } */
+
+  .rod__5bead,
+  .rod__1bead {
+    position: relative;
+    
+    height: 14px; width: 7px;
+
+    transition: background-color .4s ease;
+    transition: transform .4s ease;
+
+    cursor: pointer;
+  }
+  .rod__5bead::before,
+  .rod__5bead::after,
+  .rod__1bead::before,
+  .rod__1bead::after {
+    position: absolute;
+    top: 0;
+
+    content: '';
+    height: 0;  width: 0;
+    border: 7px solid transparent;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+  }
+  .rod__5bead::before,
+  .rod__1bead::before {
+    right: 100%;
+    --borderRightColor: var(--beadColor);
+    border-right-color: var(--borderRightColor);
+  }
+  .rod__5bead::after,
+  .rod__1bead::after {
+    left: 100%;
+    --borderLeftColor: var(--beadColor);
+    border-left-color: var(--borderLeftColor);
   }
 </style>
