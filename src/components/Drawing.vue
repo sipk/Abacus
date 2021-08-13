@@ -7,14 +7,19 @@
         @mousemove="onMouseMove"
       >
     </canvas>
-    <button class="drawing__clear"
-        @click="clear"
-      >
-      <i class="las la-backspace"
-          :class="iconStyle"
+    <div class="drawing__tool">
+      <button class="drawing__erase"
+          :style="eraseButtonStyle"
+          @click="erase"
         >
-      </i>
-    </button>
+        <i class="las la-eraser"></i>
+      </button>
+      <button class="drawing__trash"
+          @click="trash"
+        >
+        <i class="las la-trash"></i>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -23,14 +28,17 @@
     data () {
       return {
         size: 2,
-        isPressed: false,
+        isDrawing: false,
         color: '#134e6f',
         offset: [],
+        isErasing: false
       };
     },
     computed: {
-      iconStyle () {
-        return 'on-color';
+      eraseButtonStyle () {
+        return this.isErasing 
+          ? { backgroundColor: "#134e6f", color : "#fff" }
+          : { backgroundColor: "#134e6f33", color : "#134e6f" };
       }
     },
     mounted () {
@@ -51,15 +59,15 @@
         canvas.height = canvasHeight;
       },
       onMouseDown (e) {
-        this.isPressed = true;
+        this.isDrawing = true;
         this.offset = [e.offsetX, e.offsetY];
       },
       onMouseUp (e) {
-        this.isPressed = false;
+        this.isDrawing = false;
         this.offset.length = 0;
       },
       onMouseMove (e) {
-        if (this.isPressed) {
+        if (this.isDrawing) {
           const offset = [e.offsetX, e.offsetY];
           this._drawCircle(offset);
           this._drawLine(this.offset, offset);
@@ -69,7 +77,8 @@
       _drawCircle (offset) {
         const [x, y] = offset;
         this.ctx.beginPath();
-        this.ctx.arc(x, y, this.size, 0, Math.PI * 2);
+        const radius = this.isErasing ? 6 : this.size;
+        this.ctx.arc(x, y, radius, 0, Math.PI * 2);
         this.ctx.fillStyle = this.color;
         this.ctx.fill();
       },
@@ -80,10 +89,16 @@
         this.ctx.moveTo(x1, y1);
         this.ctx.lineTo(x2, y2);
         this.ctx.strokeStyle = this.color;
-        this.ctx.lineWidth = this.size * 2;
+        this.ctx.lineWidth = this.isErasing ? 12 : this.size * 2;
         this.ctx.stroke();
       },
-      clear () {
+      erase () {
+        this.isErasing = !this.isErasing;
+        this.ctx.globalCompositeOperation = this.isErasing
+          ? 'destination-out'
+          : 'source-over';
+      },
+      trash () {
         this.ctx.clearRect(
           0, 0, 
           this.ctx.canvas.clientWidth, this.ctx.canvas.clientHeight
@@ -97,15 +112,12 @@
 </script>
 
 <style scoped>
-  .on-color {
-    color: #ff6150;
-    opacity: 1;
-  }
-
   .drawing {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    /* background-color: blanchedalmond; */
   }
     .drawing__canvas {
       width: 70%;
@@ -114,18 +126,30 @@
 
       cursor: pointer;
     }
-    .drawing__clear {
-      background-color: #ff615033;
-      font-size: 32px;
-      width: 66px; height: 66px;
-      margin-left: 24px;
-      border-radius: 50%;
-      border: none;
-
+    .drawing__tool {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-left: 24px;
+      position: relative;
 
-      cursor: pointer;
+      /* background: black; */
+      width: 80px;  height: 160px;
     }
+      .drawing__erase,
+      .drawing__trash {
+        background-color: #ff615033;
+        color: #ff6150;
+        font-size: 32px;
+        width: 66px; height: 66px;
+        border-radius: 50%;
+        border: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+      }
 </style>
