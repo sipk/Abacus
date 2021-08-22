@@ -107,7 +107,8 @@ export default {
       if (this.isUnitColorOn === false) return '#ffa822';
 
       return index === this.unitRod ? '#134e6f' 
-      : index === this.unitRod - 1 ? '#1ac0c6'
+      : index === this.unitRod - 1 ? '#ff6150'
+      : index === this.unitRod - 2 ? '#1ac0c6'
       : '#ffa822';
     },
     isFingerOn (index) {

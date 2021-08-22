@@ -9,7 +9,7 @@
           id="switch"
           v-model="innerSelected"
         />
-      <div class="switch__label">1, 10</div>
+      <div class="switch__label">1-100</div>
       <div 
           class="switch__background"
           :style="backgroundStyle"
