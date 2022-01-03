@@ -5,14 +5,16 @@
         type="text" 
         placeholder="12+34"
       >
-    <button class="problem__clear"
-        @click="clear"
-      >
-      <i class="las la-backspace"
-          :class="iconStyle"
+    <div class="problem__tool">
+      <button class="problem__clear"
+          @click="clear"
         >
-      </i>
-    </button>
+        <i class="las la-backspace"
+            :class="iconStyle"
+          >
+        </i>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -50,22 +52,32 @@ export default {
     .problem__formula {
       color: #134e6f;
       font-size: 60px;
-      width: 70%;
+      width: 100%;
 
       text-align: center;
     }
-    .problem__clear {
-      background-color: #ff615033;
-      font-size: 32px;
-      width: 66px; height: 66px;
-      margin-left: 24px;
-      border-radius: 50%;
-      border: none;
-
+    .problem__tool {
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
+      margin-left: 24px;
+      position: relative;
 
-      cursor: pointer;
+      /* background: black; */
+      width: 80px;  height: 160px;
     }
+      .problem__clear {
+        background-color: #ff615033;
+        font-size: 32px;
+        width: 66px; height: 66px;
+        border-radius: 50%;
+        border: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+      }
 </style>

@@ -39,7 +39,7 @@ export default {
       background-color: white;
       /* width: 100vw; height: 300px; */
       margin: 20px 80px;
-      padding: 20px;
+      padding: 10px;
       border-radius: 3px;
 
       display: flex;
@@ -49,11 +49,13 @@ export default {
       position: relative;
     }
     .main__problem {
-      height: 180px;
+      height: 210px;
     }
-    .main__soroban-view,
+    .main__soroban-view {
+      height: 280px;
+    }
     .main__drawing {
-      height: 300px;
+      height: 350px;
     }
       .main__title {
         font-size: 13px;
@@ -64,6 +66,6 @@ export default {
       }
       .main__content {
         /* background-color: teal; */
-        width: 80%;
+        width: 90%;
       }
 </style>

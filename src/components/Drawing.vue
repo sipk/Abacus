@@ -120,7 +120,7 @@
     /* background-color: blanchedalmond; */
   }
     .drawing__canvas {
-      width: 70%;
+      width: 100%;
       max-height: 240px;
       border: 1px solid #ccc;
 
