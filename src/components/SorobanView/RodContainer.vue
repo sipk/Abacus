@@ -15,6 +15,9 @@
         :isOn="isFingerOn"
         @input="tapFinger" 
       />
+    <div class="container__no">
+      {{digitNo}}
+    </div>
   </div>
 </template>
 
@@ -37,6 +40,11 @@ export default {
     value: Number,
     hasPoint: Boolean,
     isFingerOn: Boolean
+  },
+  computed: {
+    digitNo () {
+      return 15 - this.id
+    }
   },
   methods: {
     tapPin () {
@@ -61,6 +69,9 @@ export default {
     }
     .container__rod {}
     .container__finger {
-      margin-top: 4px;
+      margin-top: 6px;
+    }
+    .container__no {
+      margin-top: 8px;
     }
 </style>

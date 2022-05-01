@@ -52,7 +52,7 @@ export default {
       height: 210px;
     }
     .main__soroban-view {
-      height: 280px;
+      height: 300px;
     }
     .main__drawing {
       height: 350px;
