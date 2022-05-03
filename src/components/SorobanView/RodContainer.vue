@@ -43,7 +43,8 @@ export default {
   },
   computed: {
     digitNo () {
-      return 15 - this.id
+      const max = 12
+      return max - this.id
     }
   },
   methods: {
