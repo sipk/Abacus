@@ -134,9 +134,10 @@ export default {
     position: relative;
     
     height: 14px; width: 7px;
+    --borderRightColor: var(--beadColor);
+    --borderLeftColor: var(--beadColor);
 
-    transition: background-color .4s ease;
-    transition: transform .4s ease;
+    transition: background-color .4s ease, transform .4s ease;
 
     cursor: pointer;
   }
@@ -156,13 +157,11 @@ export default {
   .rod__5bead::before,
   .rod__1bead::before {
     right: 100%;
-    --borderRightColor: var(--beadColor);
     border-right-color: var(--borderRightColor);
   }
   .rod__5bead::after,
   .rod__1bead::after {
     left: 100%;
-    --borderLeftColor: var(--beadColor);
     border-left-color: var(--borderLeftColor);
   }
 </style>
